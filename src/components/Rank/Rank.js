@@ -1,7 +1,8 @@
 import React from 'react';
 import './Rank';
 
-const Rank = ({onButtonSubmit, outPut}) => {
+
+const Rank = ({onButtonSubmit}) => {
   return (
     <div>
       <div className='white f3'>
