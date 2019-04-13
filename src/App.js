@@ -56,7 +56,10 @@ class App extends Component {
         const valueOfPercentage = response.outputs[0].data.regions[0].data.concepts[0].value;
         const valueOfPercentage1 = (valueOfPercentage * 100).toFixed(2)
         const results = "I am " + valueOfPercentage1 + "% sure that this is " + name;
-        alert(results)
+        setTimeout(()=>{
+          alert(results);
+        },2000)
+
 
 
 
