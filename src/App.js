@@ -30,8 +30,8 @@ const particlesOptions = {
 }
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       input: '',
       imageUrl: '',
@@ -39,6 +39,7 @@ class App extends Component {
       isSignedIn: false,
     }
   }
+
 
 
   onInputChange = (event)=> {
@@ -81,7 +82,7 @@ onRouteChange = (route) => {
   }
 
   render() {
-    const {isSignedIn, imageUrl, route,} = this.state;
+    const {isSignedIn, imageUrl, route} = this.state;
     return (
       <div className="App">
       <Particles className='particles'
@@ -103,10 +104,10 @@ onRouteChange = (route) => {
             route === 'signin'
             ? <Signin onRouteChange={this.onRouteChange}/>
             : <Register onRouteChange={this.onRouteChange}/>
-          )
-
+            )
         }
       </div>
+
     );
   }
 }
