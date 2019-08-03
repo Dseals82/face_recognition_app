@@ -8,44 +8,38 @@ class Signin extends React.Component {
       signInEmail: '',
       signInPassword:''
     }
-
   }
 
   onEmailChange = (event) => {
-
-    this.setState=({signInEmail: event.target.value})
-
+    this.setState({signInEmail: event.target.value})
   }
-  onPasswordChange = (event) => {
-    this.setState=({signInPassword: event.target.value})
 
+  onPasswordChange = (event) => {
+    this.setState({signInPassword: event.target.value})
   }
   onSubmitSignIn = () => {
-    // fetch('http://localhost:3000/signin',{
-    //   method: 'post',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify({
-    //     email: this.state.signInEmail,
-    //     password: this.state.signInPassword
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     if (data === 'success') {
-    //       this.props.onRouteChange('home');
-    //     }
-    //   })
-    console.log(this.state);
-    this.props.onRouteChange('home');
+    fetch('http://localhost:3000/signin',{
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body:JSON.stringify({
+        email: this.state.signInEmail,
+        password: this.state.signInPassword
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data === 'success'){
+          this.props.onRouteChange('home');
+        }
+      })
   }
   render(){
-    const { onRouteChange } = this.props
-    
+    const { onRouteChange } = this.props;
 
     return (
       <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
-          <form className="measure">
+          <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Sign In</legend>
               <div className="mt3">
@@ -55,8 +49,9 @@ class Signin extends React.Component {
                   type="email"
                   name="email-address"
                   id="email-address"
-                  onChange={this.onEmailChange}
+                  onChange={ this.onEmailChange }
                   autoComplete="username-email"
+                  value={this.state.signInEmail}
                 />
               </div>
               <div className="mv3">
@@ -80,16 +75,13 @@ class Signin extends React.Component {
               />
             </div>
             <div className="lh-copy mt3">
-              <p onClick={() => onRouteChange('register')}
-                 className="f6 link dim black db pointer">Register
-              </p>
+              <p onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>
             </div>
-          </form>
+          </div>
         </main>
       </article>
     );
   }
-
 }
 
 
